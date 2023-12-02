@@ -9,7 +9,7 @@ app.use(express.json());
 
 
 app.get('/ask', async (req, res) => {
-    const { question } = req.body
+    // const { question } = req.body
 
     const options = {
         method: 'POST',
@@ -19,7 +19,7 @@ app.get('/ask', async (req, res) => {
         },
         body: JSON.stringify({
             model: 'gpt-3.5-turbo',
-            messages: [{ "role": "user", "content": question }],
+            messages: [{ "role": "user", "content": 'how are you' }],
             temperature: 0.7,
             max_tokens: 256,
             top_p: 1,
