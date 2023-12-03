@@ -1,15 +1,17 @@
 const express = require('express');
 require('dotenv').config()
 const cors = require('cors');
-const app = express();
 const PORT = process.env.PORT || 3000;
+const bodyParser = require('body-parser')
 
+// app.use(express.json());
+const app = express();
+app.use(bodyParser.json())
 app.use(cors());
-app.use(express.json());
 
 
-app.get('/ask', async (req, res) => {
-    // const { question } = req.body
+app.post('/ask', async (req, res) => {
+    const question = req.body
 
     const options = {
         method: 'POST',
@@ -19,7 +21,7 @@ app.get('/ask', async (req, res) => {
         },
         body: JSON.stringify({
             model: 'gpt-3.5-turbo',
-            messages: [{ "role": "user", "content": 'how are you' }],
+            messages: [{ "role": "user", "content": question }],
             temperature: 0.7,
             max_tokens: 256,
             top_p: 1,
