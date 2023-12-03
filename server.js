@@ -11,7 +11,7 @@ app.use(cors());
 
 
 app.post('/ask', async (req, res) => {
-    const question = req.body
+    const { question } = req.body
 
     const options = {
         method: 'POST',
