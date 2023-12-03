@@ -35,7 +35,7 @@ app.post('/ask', async (req, res) => {
     try {
         const response = await fetch('https://api.openai.com/v1/chat/completions', options)
         const data = await response.json()
-        res.send(data)
+        res.send(data.choices[0].message.content)
     }
     catch (e) {
         console.log(error)
