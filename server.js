@@ -63,7 +63,9 @@ app.post('/image', async (req, res) => {
     try {
         const response = await fetch('https://api.openai.com/v1/images/generations', options)
         const data = await response.json()
-        res.send(data)
+        const url = data.data[0].url
+        const desc = data.data[0].revised_prompt
+        res.send({ url: url, desc: desc })
     }
     catch (e) {
         console.log(e)
